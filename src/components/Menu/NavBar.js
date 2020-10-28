@@ -12,21 +12,15 @@ const NavBar = () => {
       element.classList.remove("show");
       let x = document.getElementById("collapsed");
       x.classList.add("collapsed");
-      console.log("called", x, element);
     }
   };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container">
-        <a className="navbar-brand " href="/">
-          {/* <img
-            src="https://dl.dropboxusercontent.com/s/lm4myg1l0js2ssn/rsz_1logo.png?dl=0"
-            alt="logo"
-            className="img-fluid pl-2"
-          /> */}
+        <Link className="navbar-brand " to="/">
           BookLand
-        </a>
+        </Link>
         <button
           id="collapsed"
           className="navbar-toggler navbar-toggler-right collapsed"
@@ -55,9 +49,9 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#about" onClick={() => hide()}>
+              <Link className="nav-link" to="/addbooks" onClick={() => hide()}>
                 Add Boks
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#photos" onClick={() => hide()}>
