@@ -1,0 +1,31 @@
+.card {
+  margin: 5% 0%;
+}
+
+.card-body {
+  margin: 0% 0% 0% 3%;
+  padding: 6% 0%;
+}
+
+.card-title {
+  font-size: 18px !important;
+}
+.btn-md {
+  width: 150px !important;
+  text-align: center;
+}
+.books {
+  background-color: #f6d1cb;
+}
+
+.dropdown {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+.menu-btn {
+  color: #0c0c0c;
+  background-color: #f6d1cb;
+  border-color: #6c757d;
+}
