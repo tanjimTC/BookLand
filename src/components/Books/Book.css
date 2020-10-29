@@ -22,7 +22,7 @@
 .dropdown {
   position: absolute;
   top: 4px;
-  right: 4px;
+  left: 4px;
 }
 
 .menu-btn {

@@ -1,32 +1,52 @@
 import React from "react";
 import "./Add.css";
 import { useForm } from "react-hook-form";
+import Axios from "axios";
 
 const Add = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (data) => {
+    const formData = new FormData();
+
+    formData.append("bookName", data.bookName);
+    formData.append("author", data.author);
+    formData.append("genre", data.genre);
+    formData.append("price", data.price);
+    formData.append("image", data.image[0]);
+
+    Axios.post("http://localhost:3200/book/addbook", formData)
+      .then((json) => console.log(json.data))
+      .catch((err) => console.log(err));
+
+    console.log(data.bookName);
+  };
   return (
     <section className="addForm">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-10 col-md-6 col-lg-8 col-xl-6">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div class="row">
-                <div class="col text-center">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-10 col-md-6 col-lg-8 col-xl-6">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              encType="multipart/form-data"
+              action="/"
+              method="post"
+            >
+              <div className="row">
+                <div className="col text-center">
                   <h3> Add Books </h3>
                   <br />
-                  <i class="text-h3">
+                  <i className="text-h3">
                     “... a mind needs books as a sword needs a whetstone, if it
                     is to keep its edge.”
                   </i>
                   <br />
                 </div>
               </div>
-              <div class="row align-items-center">
-                <div class="col mt-2">
+              <div className="row align-items-center">
+                <div className="col mt-2">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Book Name"
                     name="bookName"
                     ref={register({ required: true })}
@@ -35,11 +55,11 @@ const Add = () => {
                   <br />
                 </div>
               </div>
-              <div class="row align-items-center mt-2">
-                <div class="col">
+              <div className="row align-items-center mt-2">
+                <div className="col">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Author"
                     name="author"
                     ref={register({ required: true })}
@@ -48,11 +68,11 @@ const Add = () => {
                   <br />
                 </div>
               </div>
-              <div class="row align-items-center mt-2">
-                <div class="col">
+              <div className="row align-items-center mt-2">
+                <div className="col">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Genre"
                     name="genre"
                     ref={register({ required: true })}
@@ -61,11 +81,11 @@ const Add = () => {
                   <br />
                 </div>
               </div>
-              <div class="row align-items-center mt-2">
-                <div class="col">
+              <div className="row align-items-center mt-2">
+                <div className="col">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Price"
                     name="price"
                     ref={register({ required: true })}
@@ -74,11 +94,11 @@ const Add = () => {
                   <br />
                 </div>
               </div>
-              <div class="row align-items-center mt-2">
-                <div class="col">
+              <div className="row align-items-center mt-2">
+                <div className="col">
                   <input
                     type="file"
-                    class="form-control"
+                    className="form-control"
                     name="image"
                     ref={register({ required: true })}
                   />{" "}
@@ -86,10 +106,10 @@ const Add = () => {
                   <br />
                 </div>
               </div>
-              <div class="row justify-content-start mt-2">
-                <div class="col">
+              <div className="row justify-content-start mt-2">
+                <div className="col">
                   <button
-                    class="btn "
+                    className="btn "
                     style={{
                       backgroundColor: "#3F3D56",
                       color: "#FFFFFF",
