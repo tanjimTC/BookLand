@@ -2,10 +2,14 @@ import React from "react";
 import "./Add.css";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Add = () => {
+const Add = (props) => {
+  toast.configure();
+  const { update, id, updateUi } = props;
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
     const formData = new FormData();
 
     formData.append("bookName", data.bookName);
@@ -14,11 +18,27 @@ const Add = () => {
     formData.append("price", data.price);
     formData.append("image", data.image[0]);
 
-    Axios.post("http://localhost:3200/book/addbook", formData)
-      .then((json) => console.log(json.data))
-      .catch((err) => console.log(err));
+    if (update === "update") {
+      console.log("got here insdie update");
+      Axios.put("http://localhost:3200/book/cart/" + id, formData)
+        .then((json) => {
+          console.log("inside update", json.data);
+          updateUi();
+        })
+        .catch((err) => console.log(err));
+    } else {
+      Axios.post("http://localhost:3200/book/addbook", formData)
+        .then((json) => {
+          console.log("inside post", json.data);
+          toast.dark("✔️ Book Added Successfully!", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+          });
+        })
+        .catch((err) => console.log(err));
+    }
 
-    console.log(data.bookName);
+    e.target.reset();
   };
   return (
     <section className="addForm">
@@ -33,12 +53,14 @@ const Add = () => {
             >
               <div className="row">
                 <div className="col text-center">
-                  <h3> Add Books </h3>
+                  {update ? <h3> Edit Books </h3> : <h3> Add Books </h3>}
                   <br />
-                  <i className="text-h3">
-                    “... a mind needs books as a sword needs a whetstone, if it
-                    is to keep its edge.”
-                  </i>
+                  {!update && (
+                    <i className="text-h3">
+                      “... a mind needs books as a sword needs a whetstone, if
+                      it is to keep its edge.”
+                    </i>
+                  )}
                   <br />
                 </div>
               </div>
@@ -108,17 +130,31 @@ const Add = () => {
               </div>
               <div className="row justify-content-start mt-2">
                 <div className="col">
-                  <button
-                    className="btn "
-                    style={{
-                      backgroundColor: "#3F3D56",
-                      color: "#FFFFFF",
-                      width: "150px",
-                    }}
-                    type="submit"
-                  >
-                    Add Book
-                  </button>
+                  {update ? (
+                    <button
+                      className="btn "
+                      style={{
+                        backgroundColor: "#3F3D56",
+                        color: "#FFFFFF",
+                        width: "150px",
+                      }}
+                      type="submit"
+                    >
+                      Update
+                    </button>
+                  ) : (
+                    <button
+                      className="btn "
+                      style={{
+                        backgroundColor: "#3F3D56",
+                        color: "#FFFFFF",
+                        width: "150px",
+                      }}
+                      type="submit"
+                    >
+                      Add Book
+                    </button>
+                  )}
                 </div>
               </div>
             </form>

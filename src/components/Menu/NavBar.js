@@ -54,9 +54,9 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#photos" onClick={() => hide()}>
+              <Link className="nav-link" to="/savedbook" onClick={() => hide()}>
                 Saved Books
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#contact" onClick={() => hide()}>

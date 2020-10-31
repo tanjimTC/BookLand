@@ -17,6 +17,7 @@
 .books {
   background-color: #f6d1cb;
   padding-bottom: 60px;
+  min-height: 95vh;
 }
 
 .dropdown {
