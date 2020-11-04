@@ -7,6 +7,7 @@ import AddBook from "./containers/AddBook";
 import Book from "./containers/Book";
 import Home from "./containers/Home";
 import Savedbook from "./containers/Savedbook";
+import Contact from "./containers/Contact";
 
 function App() {
   const [saved, setSaved] = useState([]);
@@ -40,7 +41,14 @@ function App() {
             <AddBook />
           </Route>
           <Route path="/savedbook">
-            <Savedbook saved={saved} allbooks={allbooks} />
+            <Savedbook
+              saved={saved}
+              allbooks={allbooks}
+              updateState={updateState}
+            />
+          </Route>
+          <Route path="/contact">
+            <Contact />
           </Route>
         </Switch>
       </Router>

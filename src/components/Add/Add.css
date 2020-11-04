@@ -1,5 +1,8 @@
 .addForm {
-  background-color: #f6d1cb;
+  /* background-color: #f6d1cb; */
   min-height: 95vh;
   padding-top: 60px;
+}
+.addBookfrom {
+  border-radius: 20px;
 }

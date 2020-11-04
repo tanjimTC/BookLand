@@ -59,9 +59,9 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#contact" onClick={() => hide()}>
+              <Link className="nav-link" to="/contact" onClick={() => hide()}>
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

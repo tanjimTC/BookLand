@@ -26,6 +26,7 @@ const Books = (props) => {
     Axios.delete("http://localhost:3200/book/cart/" + state).then(
       (response) => {
         updateUi();
+        updateState();
       }
     );
   };
@@ -35,10 +36,9 @@ const Books = (props) => {
       bookName: name,
     })
       .then(function (response) {
-        console.log(response);
         toast.dark("✔️ Book saved Successfully!", {
           position: toast.POSITION.TOP_RIGHT,
-          autoClose: 5000,
+          autoClose: 2000,
         });
         updateState();
       })
@@ -50,7 +50,7 @@ const Books = (props) => {
       <div className="container pt-4">
         <div className="card-deck row">
           {data.map((x) => (
-            <div className="col-xs-12 col-sm-6 col-md-4" key={x._id}>
+            <div className="col-xs-12 col-sm-6 col-md-4 p-3 mb-2" key={x._id}>
               <div className="card">
                 <div className="dropdown">
                   <button

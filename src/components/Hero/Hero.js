@@ -4,35 +4,29 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div id="home">
-      <div className="container">
-        <div className="row  d-flex justify-content-center align-items-center header-container">
-          <div className="col-md-6 mt-4">
-            <div
-              style={{
-                width: "70%",
-                margin: "auto",
-              }}
-            >
-              <h1 className="intro__title">Keep Reading...</h1> <br />
-              <i className="intro__subtitle">
-                “Wear the old coat and buy the new book.”
-              </i>{" "}
-              <br /> <br />
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/Books"
-                className="button"
-              >
-                See More {"->"}
-              </Link>
+      <div class="layer">
+        <div class="container">
+          <div class=" row">
+            <div class="col-lg-12">
+              <div id="content">
+                <h1 className="h1">BookLand</h1>
+                <h3 className="h3">
+                  “Wear the old coat and buy the new book.”
+                </h3>
+                <center>
+                  <hr />
+                </center>
+                <Link
+                  to="/books"
+                  class="fas fa-book"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  <span style={{ marginLeft: "10px", textDecoration: "none" }}>
+                    Get Started
+                  </span>
+                </Link>{" "}
+              </div>
             </div>
-          </div>
-          <div className="col-md-6 logo-image">
-            <img
-              className="intro__illustration img-fluid "
-              src="https://dl.dropboxusercontent.com/s/c55cyayn7lou912/undraw_Books_l33t.svg"
-              alt=""
-            />
           </div>
         </div>
       </div>

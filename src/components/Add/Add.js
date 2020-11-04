@@ -29,10 +29,9 @@ const Add = (props) => {
     } else {
       Axios.post("http://localhost:3200/book/addbook", formData)
         .then((json) => {
-          console.log("inside post", json.data);
           toast.dark("✔️ Book Added Successfully!", {
             position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
+            autoClose: 2000,
           });
         })
         .catch((err) => console.log(err));
@@ -41,10 +40,16 @@ const Add = (props) => {
     e.target.reset();
   };
   return (
-    <section className="addForm">
+    <section className="addForm mb-3">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-10 col-md-6 col-lg-8 col-xl-6">
+          <div
+            className="col-10 col-md-6 col-lg-8 col-xl-6 mx-auto p-5 mb-5 addBookfrom"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(255,206,198,1) 20%, rgba(133,189,186,1) 100%)",
+            }}
+          >
             <form
               onSubmit={handleSubmit(onSubmit)}
               encType="multipart/form-data"
