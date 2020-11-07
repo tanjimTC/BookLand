@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div id="home">
-      <div class="layer">
-        <div class="container">
-          <div class=" row">
-            <div class="col-lg-12">
+      <div className="layer">
+        <div className="container">
+          <div className=" row">
+            <div className="col-lg-12">
               <div id="content">
                 <h1 className="h1">BookLand</h1>
                 <h3 className="h3">
@@ -18,7 +18,7 @@ const Hero = () => {
                 </center>
                 <Link
                   to="/books"
-                  class="fas fa-book"
+                  className="fas fa-book"
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   <span style={{ marginLeft: "10px", textDecoration: "none" }}>

@@ -3,11 +3,11 @@ import "./Cont.css";
 const Cont = () => {
   return (
     <div>
-      <div class="container">
-        <div class="contact-parent">
-          <div class="contact-child child1">
+      <div className="container">
+        <div className="contact-parent">
+          <div className="contact-child child1">
             <p>
-              <i class="fas fa-map-marker-alt"></i> Address <br />
+              <i className="fas fa-map-marker-alt"></i> Address <br />
               <span>
                 {" "}
                 19/1 , Rajar Goli
@@ -17,24 +17,24 @@ const Cont = () => {
             </p>
 
             <p>
-              <i class="fas fa-phone-alt"></i> Let's Talk <br />
+              <i className="fas fa-phone-alt"></i> Let's Talk <br />
               <span> +8801729134248</span>
             </p>
 
             <p>
-              <i class=" far fa-envelope"></i> Email <br />
+              <i className=" far fa-envelope"></i> Email <br />
               <span>tanjimtc74@gmail.com</span>
             </p>
           </div>
 
           <div
-            class="contact-child child2"
+            className="contact-child child2"
             style={{
               background:
                 "linear-gradient(90deg, rgba(255,206,198,1) 20%, rgba(133,189,186,1) 100%)",
             }}
           >
-            <div class="inside-contact">
+            <div className="inside-contact">
               <h2>Contact US</h2>
               <h3>
                 <span id="confirm" />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Add.css";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
@@ -8,7 +8,17 @@ import "react-toastify/dist/ReactToastify.css";
 const Add = (props) => {
   toast.configure();
   const { update, id, updateUi } = props;
+  const [state, setState] = useState();
+
+  useEffect(() => {
+    Axios.get("http://localhost:3200/book").then((response) => {
+      const book = response.data.find((x) => x._id === id);
+      setState(book);
+    });
+  }, [id]);
+
   const { register, handleSubmit, errors } = useForm();
+
   const onSubmit = (data, e) => {
     const formData = new FormData();
 
@@ -19,11 +29,13 @@ const Add = (props) => {
     formData.append("image", data.image[0]);
 
     if (update === "update") {
-      console.log("got here insdie update");
+      console.log("got here insdie update", id);
+
       Axios.put("http://localhost:3200/book/cart/" + id, formData)
         .then((json) => {
-          console.log("inside update", json.data);
           updateUi();
+          alert("Book updated sucessfully");
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     } else {
@@ -44,7 +56,11 @@ const Add = (props) => {
       <div className="container">
         <div className="row justify-content-center">
           <div
-            className="col-10 col-md-6 col-lg-8 col-xl-6 mx-auto p-5 mb-5 addBookfrom"
+            className={
+              update
+                ? "col-10 col-md-6 col-lg-8 col-xl-12 mx-auto py-2 mb-5 addBookfrom"
+                : "col-10 col-md-6 col-lg-8 col-xl-6 p-5 mx-auto mb-5 addBookfrom"
+            }
             style={{
               background:
                 "linear-gradient(90deg, rgba(255,206,198,1) 20%, rgba(133,189,186,1) 100%)",
@@ -76,6 +92,7 @@ const Add = (props) => {
                     className="form-control"
                     placeholder="Book Name"
                     name="bookName"
+                    defaultValue={state ? state.bookName : ""}
                     ref={register({ required: true })}
                   />{" "}
                   {errors.bookName && <span>This field is required</span>}
@@ -89,6 +106,7 @@ const Add = (props) => {
                     className="form-control"
                     placeholder="Author"
                     name="author"
+                    defaultValue={state ? state.author : ""}
                     ref={register({ required: true })}
                   />{" "}
                   {errors.author && <span>This field is required</span>}
@@ -102,6 +120,7 @@ const Add = (props) => {
                     className="form-control"
                     placeholder="Genre"
                     name="genre"
+                    defaultValue={state ? state.genre : ""}
                     ref={register({ required: true })}
                   />{" "}
                   {errors.genre && <span>This field is required</span>}
@@ -115,6 +134,7 @@ const Add = (props) => {
                     className="form-control"
                     placeholder="Price"
                     name="price"
+                    defaultValue={state ? state.price : ""}
                     ref={register({ required: true })}
                   />{" "}
                   {errors.price && <span>This field is required</span>}

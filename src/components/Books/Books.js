@@ -143,7 +143,12 @@ const Books = (props) => {
                   </button>
                 </div>
                 <div className="modal-body">
-                  <Add update="update" id={state} updateUi={updateUi} />
+                  <Add
+                    update="update"
+                    id={state}
+                    data={data}
+                    updateUi={updateUi}
+                  />
                 </div>
               </div>
             </div>
