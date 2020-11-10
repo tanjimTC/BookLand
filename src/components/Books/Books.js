@@ -4,11 +4,21 @@ import Axios from "axios";
 import Add from "../Add/Add";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+import { ClockLoader, HashLoader } from "react-spinners";
 
 const Books = (props) => {
   const { updateState } = props;
   const [state, setState] = useState();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const override = css`
+    display: block;
+    margin: 100px auto;
+    border: red;
+  `;
 
   useEffect(() => {
     Axios.get("https://bookland-server.herokuapp.com/book").then((response) => {
@@ -27,6 +37,12 @@ const Books = (props) => {
       "https://bookland-server.herokuapp.com/book/cart/" + state
     ).then((response) => {
       updateUi();
+      updateState();
+    });
+    fetch("https://bookland-server.herokuapp.com/book/delete/" + state, {
+      method: "DELETE",
+    }).then((response) => {
+      console.log("delete");
       updateState();
     });
   };
@@ -48,6 +64,14 @@ const Books = (props) => {
   return (
     <div className="books">
       <div className="container pt-4">
+        {data.length < 1 && (
+          <ClockLoader
+            css={override}
+            size={200}
+            color={"#000"}
+            loading={loading}
+          />
+        )}
         <div className="card-deck row">
           {data.map((x) => (
             <div className="col-xs-12 col-sm-6 col-md-4 p-3 mb-2" key={x._id}>

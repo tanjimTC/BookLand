@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { css } from "@emotion/core";
+import { HashLoader } from "react-spinners";
 
 const Savedbooks = (props) => {
   const [savedbook, setSavedbook] = useState();
   const { id } = props.data;
   const { allbooks, updateState } = props;
+  const [loading, setLoading] = useState(true);
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   useEffect(() => {
     fetch("https://bookland-server.herokuapp.com/book/savebook")
@@ -25,7 +34,7 @@ const Savedbooks = (props) => {
 
   return (
     <div className="">
-      {savedbook && (
+      {savedbook ? (
         <div className="container">
           <div className="card col-md-12">
             <div
@@ -70,6 +79,31 @@ const Savedbooks = (props) => {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="container">
+          <div className="card col-md-12">
+            <div
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(255,206,198,1) 20%, rgba(133,189,186,1) 100%)",
+              }}
+              className="row p-3"
+            >
+              <HashLoader
+                css={override}
+                size={80}
+                color={"#93BFBC"}
+                loading={loading}
+              />
+              <HashLoader
+                css={override}
+                size={80}
+                color={"#EBCBC4"}
+                loading={loading}
+              />
             </div>
           </div>
         </div>
