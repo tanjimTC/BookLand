@@ -5,14 +5,13 @@ import Add from "../Add/Add";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { css } from "@emotion/core";
-import ClipLoader from "react-spinners/ClipLoader";
-import { ClockLoader, HashLoader } from "react-spinners";
+import { ClockLoader } from "react-spinners";
 
 const Books = (props) => {
   const { updateState } = props;
   const [state, setState] = useState();
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(true);
 
   const override = css`
     display: block;

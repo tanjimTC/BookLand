@@ -19,14 +19,24 @@
 
 #content {
   text-align: center;
-  padding-top: 25%;
+  padding-top: 24%;
   text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
     0px 18px 23px rgba(0, 0, 0, 0.1);
 }
-.h1 {
+#content .h1 {
   font-weight: 700;
   font-size: 5em;
   color: #f6d1cb;
+}
+@media only screen and (max-width: 600px) {
+  #content .h1 {
+    font-weight: 700;
+    font-size: 2.5em;
+    color: #f6d1cb;
+  }
+  #content .h3 {
+    font-size: 1.3em;
+  }
 }
 html {
   height: 100%;

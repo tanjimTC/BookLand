@@ -6,7 +6,7 @@ const Savedbooks = (props) => {
   const [savedbook, setSavedbook] = useState();
   const { id } = props.data;
   const { allbooks, updateState } = props;
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(true);
 
   const override = css`
     display: block;
