@@ -11,27 +11,27 @@ const Books = (props) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:3200/book").then((response) => {
+    Axios.get("https://bookland-server.herokuapp.com/book").then((response) => {
       setData(response.data);
     });
   }, []);
 
   const updateUi = () => {
-    Axios.get("http://localhost:3200/book").then((response) => {
+    Axios.get("https://bookland-server.herokuapp.com/book").then((response) => {
       setData(response.data);
     });
   };
 
   const remove = () => {
-    Axios.delete("http://localhost:3200/book/cart/" + state).then(
-      (response) => {
-        updateUi();
-        updateState();
-      }
-    );
+    Axios.delete(
+      "https://bookland-server.herokuapp.com/book/cart/" + state
+    ).then((response) => {
+      updateUi();
+      updateState();
+    });
   };
   const save = (id, name) => {
-    Axios.post("http://localhost:3200/book/savebook", {
+    Axios.post("https://bookland-server.herokuapp.com/book/savebook", {
       id: id,
       bookName: name,
     })
@@ -97,7 +97,9 @@ const Books = (props) => {
                 <div className="view overlay">
                   <img
                     className="card-img-top"
-                    src={"http://localhost:3200/uploads/" + x.image}
+                    src={
+                      "https://bookland-server.herokuapp.com/uploads/" + x.image
+                    }
                     alt="Card cap"
                   />
                   <a href="#!">

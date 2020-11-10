@@ -11,7 +11,7 @@ const Add = (props) => {
   const [state, setState] = useState();
 
   useEffect(() => {
-    Axios.get("http://localhost:3200/book").then((response) => {
+    Axios.get("https://bookland-server.herokuapp.com/book").then((response) => {
       const book = response.data.find((x) => x._id === id);
       setState(book);
     });
@@ -31,7 +31,10 @@ const Add = (props) => {
     if (update === "update") {
       console.log("got here insdie update", id);
 
-      Axios.put("http://localhost:3200/book/cart/" + id, formData)
+      Axios.put(
+        "https://bookland-server.herokuapp.com/book/cart/" + id,
+        formData
+      )
         .then((json) => {
           updateUi();
           alert("Book updated sucessfully");
@@ -39,7 +42,7 @@ const Add = (props) => {
         })
         .catch((err) => console.log(err));
     } else {
-      Axios.post("http://localhost:3200/book/addbook", formData)
+      Axios.post("https://bookland-server.herokuapp.com/book/addbook", formData)
         .then((json) => {
           toast.dark("✔️ Book Added Successfully!", {
             position: toast.POSITION.TOP_RIGHT,

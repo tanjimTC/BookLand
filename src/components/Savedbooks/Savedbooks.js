@@ -6,7 +6,7 @@ const Savedbooks = (props) => {
   const { allbooks, updateState } = props;
 
   useEffect(() => {
-    fetch("http://localhost:3200/book/savebook")
+    fetch("https://bookland-server.herokuapp.com/book/savebook")
       .then((res) => res.json())
       .then((data) => {
         const book = allbooks.find((x) => x._id === id);
@@ -15,7 +15,7 @@ const Savedbooks = (props) => {
   }, [id, allbooks]);
 
   const removesaved = (key) => {
-    fetch("http://localhost:3200/book/delete/" + key, {
+    fetch("https://bookland-server.herokuapp.com/book/delete/" + key, {
       method: "DELETE",
     }).then((response) => {
       console.log("delete");
@@ -38,7 +38,10 @@ const Savedbooks = (props) => {
               <div className="col-sm-5">
                 <img
                   className="d-block w-75 mx-auto"
-                  src={"http://localhost:3200/uploads/" + savedbook.image}
+                  src={
+                    "https://bookland-server.herokuapp.com/uploads/" +
+                    savedbook.image
+                  }
                   alt=""
                 />
               </div>

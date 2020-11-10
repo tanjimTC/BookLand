@@ -14,10 +14,12 @@ function App() {
   const [allbooks, setAllbooks] = useState([]);
 
   const updateState = () => {
-    Axios.get("http://localhost:3200/book/savebook").then((response) => {
-      setSaved(response.data);
-    });
-    Axios.get("http://localhost:3200/book").then((response) => {
+    Axios.get("https://bookland-server.herokuapp.com/book/savebook").then(
+      (response) => {
+        setSaved(response.data);
+      }
+    );
+    Axios.get("https://bookland-server.herokuapp.com/book").then((response) => {
       setAllbooks(response.data);
     });
   };
